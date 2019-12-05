@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yang.dao.PictureDao">
+    <select id="selectSearch" resultType="Picture">
+        select * from picture
+        <where>
+            <if test="searchOper=='eq'">
+                ${searchField} =#{searchString}
+            </if>
+            <if test="searchOper=='ne'">
+                ${searchField}!=#{searchString}
+            </if>
+            <if test="searchOper=='cn'">
+                ${searchField} like concat('%',#{searchString},'%')
+            </if>
+        </where>
+        limit #{page},#{rows}
+    </select>
+
+    <select id="findTotalSearch" resultType="Long">
+        select count(id) from picture
+        <where>
+            <if test="searchOper=='eq'">
+                ${searchField}=#{searchString}
+            </if>
+            <if test="searchOper=='ne'">
+                ${searchField}!=#{searchString}
+            </if>
+            <if test="searchOper=='cn'">
+                ${searchField} like concat('%',#{searchString},'%')
+            </if>
+        </where>
+    </select>
+
+
+
+
+
+</mapper>
