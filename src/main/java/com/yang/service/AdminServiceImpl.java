@@ -17,6 +17,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
     public Admin findOneByName(String name) {
+
         return adminDao.selectOne(new Admin().setName(name));
     }
 }

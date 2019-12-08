@@ -1,5 +1,7 @@
 package com.yang.service;
 
+import com.yang.annotaction.CacheAnnotaction;
+import com.yang.annotaction.CacheRemoveAnnotaction;
 import com.yang.dao.PictureDao;
 import com.yang.entity.Picture;
 import org.apache.ibatis.session.RowBounds;
@@ -17,16 +19,19 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
+    @CacheAnnotaction
     public List<Picture> findAll() {
         return pictureDao.selectAll();
     }
 
     @Override
+    @CacheRemoveAnnotaction
     public void addOne(Picture picture) {
         pictureDao.insert(picture);
     }
 
     @Override
+    @CacheRemoveAnnotaction
     public void removeOne(String id) {
 
         pictureDao.deleteByPrimaryKey(id);
@@ -34,6 +39,7 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS)
+    @CacheAnnotaction
     public Picture findOne(String id) {
         return pictureDao.selectOne(new Picture().setId(id));
     }
@@ -45,6 +51,7 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
+    @CacheAnnotaction
     public List<Picture> findAllByPage(Integer page, Integer size) {
         page=(page-1)*size;
         return pictureDao.selectByRowBounds(new Picture(),new RowBounds(page,size));

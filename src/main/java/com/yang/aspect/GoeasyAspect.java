@@ -24,12 +24,11 @@ public class GoeasyAspect {
 
     @Around("@annotation(com.yang.annotaction.GoeasyAnnotaction)")
     public Object findSex(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        //环绕通知
+        System.out.println(new Date());//先执行这个
+        Object proceed = proceedingJoinPoint.proceed();//在执行这个（ex:删除一个人）
 
-        System.out.println(new Date());
-        Object proceed = proceedingJoinPoint.proceed();
-        System.out.println("asdada");
-
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();//最后执行
         map.put("man_oneDay",userService.findSex("sex = '男' and DATE_SUB(NOW(),INTERVAL 1 day) < createTime"));
         map.put("woman_oneDay",userService.findSex("sex = '女' and DATE_SUB(NOW(),INTERVAL 1 day) < createTime"));
         map.put("man_oneWeek",userService.findSex("sex = '男' and DATE_SUB(NOW(),INTERVAL 7 day) < createTime"));
