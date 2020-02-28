@@ -13,13 +13,13 @@ public class Code {
 
     public static void code(String phone,Integer code){
         //对应你阿里云账户的 accessKeyId
-        final String accessKeyId = "LTAI4FrDLM3wpU6SpVvmz53i";
+        final String accessKeyId = "LTAI4FrDLM3wpU6SpVvmz531i";
         //对应你阿里云账户的 accessKeySecret
-        final String accessKeySecret = "CiNag1Alsxeq1ABpXUYTKo0zX1YIfc";
+        final String accessKeySecret = "CiNag1Alsxeq1ABpXUYTKo0zX1YIf1c";
         //对应签名名称
         final String signName="小白通知";
         //对应模板代码
-        final String templateCode="SMS_178456862";
+        final String templateCode="SMS_1784568612";
 
 
         DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId,accessKeySecret);
